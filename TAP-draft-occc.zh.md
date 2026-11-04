@@ -356,7 +356,7 @@ TapeOut 的处理器合约对每个电路的 `tokenURI` 都返回空值，也没
 
 ## 参考实现
 
-代码仓库：<https://github.com/gm-lsp/Tapeout-OCCC/tree/08c60c8198883ed64e6d41b167f58b1f9713c86a>（MIT）
+代码仓库：<https://github.com/gm-lsp/Tape-OCCC/tree/516454704caf88142c30468f8a52c652647480bd>（MIT）
 - `src/CuratedRegistry.sol`：登记合约兼发行器（第 3、4 节）：检查发行参数，把每个 Vault 创建为构造时固定的 Vault 实现合约的克隆，记录官方电路、官方编号和元数据
 - `src/CuratedTypes.sol`：发行参数
 - `src/CuratedVault.sol`：参考 Vault（第 6 节）：每件作品固定价格，可任意顺序，也可按清单顺序出售同款多份；用原生币或一种 ERC-20 代币定价；收入付给策展人；国库预留、销售控制、收尾
