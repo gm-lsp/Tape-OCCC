@@ -8,7 +8,7 @@ The reference vault in this repository sells each listed work at a fixed price, 
 
 ## Chains
 
-TapeOut runs on BNB Smart Chain, X Layer and Base, and so does this protocol, unchanged: deploy the vault implementation and one `CuratedRegistry` per chain with that chain's TapeOut factory (`FACTORY=<factory> forge script script/Deploy.s.sol --rpc-url <RPC> --broadcast --private-key <key>`). A collection, its work list and its officialness belong to one chain (leaves include the chain id).
+TapeOut runs on BNB Smart Chain, X Layer and Base, and so does this protocol, unchanged: deploy the vault implementation and one `CuratedRegistry` per chain with that chain's TapeOut factory (`FACTORY=<factory> forge script script/Deploy.s.sol --rpc-url <RPC> --broadcast --private-key <key>`, then `python3 tool/check_deploy.py --rpc <RPC> --registry <REGISTRY>`). A collection, its work list and its officialness belong to one chain (leaves include the chain id).
 
 | Chain | chainId | Native coin | TapeOut factory (registry constructor argument) | Public RPC |
 |---|---|---|---|---|
@@ -45,6 +45,7 @@ No contract has an owner, an admin function or an upgrade path.
 | `src/interfaces/ICircuitURIProvider.sol` | the `tokenURI` hook proposed to TapeOut (TAP Recommendation 1) |
 | `src/interfaces/ITapeOut.sol` | the TapeOut functions used (selectors checked on mainnet) |
 | `tool/curate.py` | encoder, Merkle builder, manifest, verifier (Python 3.11+, no dependencies) |
+| `tool/check_deploy.py` | checks a deployed registry and its vault implementation against this commit (`forge build` first) |
 | `tool/tap02_reference.py`, `tool/tap02_vectors.json` | official TAP-02 reference implementation and vectors (MIT) |
 | `tool/examples/` | throw-away example collections of small test circuits |
 | `test/Curated.t.sol`, `test/Copies.t.sol` | 50 fork tests (BNB Smart Chain, X Layer or Base), including token pricing with BEM on BNB Smart Chain and copies sold in order |

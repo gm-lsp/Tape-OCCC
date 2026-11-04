@@ -396,7 +396,7 @@ Not yet deployed.
 | Base (8453) | CuratedRegistry | TBD | not a proxy | `FACTORY()` returns `0x1f09DAeFA827f02CBb40967cc91b259763760761`; the runtime bytecode (immutables masked) matches the reference implementation at the linked commit | yes (no owner, no proxy) |
 | Base (8453) | CuratedVault | `VAULT_IMPL()` of the registry above | not a proxy; vaults are EIP-1167 clones of it | the runtime bytecode matches the reference implementation; it cannot be initialised | yes (no owner) |
 
-The TapeOut factory addresses are those listed in TAP-10's Deployments. A registry's address may differ from chain to chain; front-ends name the registry per chain (§7.1).
+The TapeOut factory addresses are those listed in TAP-10's Deployments. A registry's address may differ from chain to chain; front-ends name the registry per chain (§7.1). `python3 tool/check_deploy.py --rpc <RPC> --registry <address>` in the reference implementation runs the checks of this table (after `forge build` at the linked commit) and prints both fingerprints: registry `0x5ba3de9e9d56421bba8212612416ef0bf7181a03c3bc1edd0fe0565b1dbc01a2`, vault implementation `0x44b3b1d049a8cda1899cf42aa2354061def8331bb48989534229f851bbf64dd9` (keccak256 of the runtime code without its CBOR metadata, with the registry's immutables set to zero).
 
 ## Security Considerations
 
