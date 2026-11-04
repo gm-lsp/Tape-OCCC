@@ -1,0 +1,40 @@
+{
+ "chainId": 56,
+ "registry": "0x00000000000000000000000000000000C0DEC0DE",
+ "curator": "0x00000000000000000000000000000000000C0FFE",
+ "treasury": "0x0000000000000000000000000000000000007EA5",
+ "mintPriceWei": "10000000000000",
+ "mintBatch": 2500,
+ "saleStart": 2,
+ "saleEnd": 4102444800,
+ "royalty": {
+  "receiver": "0x00000000000000000000000000000000000C0FFE",
+  "bps": 300
+ },
+ "spareNand": 5,
+ "spareLatch": 3,
+ "name": "P05 Copies",
+ "symbol": "P5COPY",
+ "story": "One design sold many times, numbered in order.",
+ "sequential": true,
+ "works": [
+  {
+   "file": "and2.json",
+   "title": "AND (treasury)",
+   "reserved": true,
+   "copies": 2
+  },
+  {
+   "file": "toggle.json",
+   "title": "Toggle",
+   "priceWei": "10000000000000000",
+   "copies": 5
+  },
+  {
+   "file": "xor.json",
+   "title": "XOR",
+   "priceWei": "0",
+   "copies": 3
+  }
+ ]
+}
