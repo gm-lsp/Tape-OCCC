@@ -373,7 +373,7 @@ The tool also refuses work lists with a REF to a circuit that does not exist yet
 
 ## Reference Implementation
 
-Repository: <https://github.com/gm-lsp/Tape-OCCC/tree/516454704caf88142c30468f8a52c652647480bd> (MIT).
+Repository: <https://github.com/gm-lsp/Tape-OCCC/tree/6d87cbc6c29acec5d39aae84ec9d05d6c006496f> (MIT).
 
 - `src/CuratedRegistry.sol` — registry and launcher (§3, §4): checks the launch parameters, creates each vault as a clone of the vault implementation fixed in its constructor, records official circuits, serials and metadata.
 - `src/CuratedTypes.sol` — the launch parameters.
