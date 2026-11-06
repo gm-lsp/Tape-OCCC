@@ -3,7 +3,7 @@ tap: TBD
 title: Official Curated Circuit Collections
 description: A registry and launch pattern that make "this circuit is an official work of this collection" a public, provenance-based fact on chain.
 author: gm-lsp (@gm-lsp)
-discussions-to: <URL of the discussion thread>
+discussions-to: https://github.com/TapeOutProtocol/TAPs/issues/102
 status: Draft
 type: Standards
 created: 2026-10-25
@@ -17,11 +17,11 @@ license: CC0-1.0
 
 A way for an artist or project to launch a fixed list of circuits on TapeOut so that anyone — a buyer, a market, another contract — can check on chain which circuits in the collection are the real works and which were added by someone else.
 
-**For TapeOut:** the two upgrades this TAP recommends to TapeOut (circuit metadata decided by each processor's creator, for every project; and an opt-in restriction of tape-outs to a processor's creator) are collected at the end, under *Recommendations to TapeOut (key points)*. Nothing else depends on them.
-
 ## Abstract
 
 On TapeOut a processor contract is an NFT collection, but anyone can add circuits to it: with transistors any netlist can be taped out, and without any transistors a netlist made only of REF records can be taped out at zero transistor cost. This TAP defines **curated collections** (the Official Curated Circuit Collections, OCCC, of the title): collections whose official works anyone can check. A curated collection is launched in a single transaction in which a vault contract creates the processor and mints its entire transistor supply to itself. Afterwards, the collection's transistors can be spent only through that vault, and the vault tapes out only works from a work list fixed at launch as a Merkle root. A circuit is **official** if and only if the vault taped it out and a registry certified its id in the same transaction; every official circuit also gets an official serial number, its order among the collection's official tape-outs. A curator can mark works in the list as **reserved** for a treasury fixed at launch, from which they can be given away or airdropped like any circuit, and can declare a royalty that markets may read and honour. How a vault sells its works (prices, order, assignment, payment) is left to the vault, within the rules every vault follows; officialness does not depend on it. The TAP specifies the registry interface (`isOfficial`, `editionOf`, `tokenOf`, `serialOf`, `tokenOfSerial`, `isReserved`, `isCurated`, `collectionOf`, the royalty functions and their events), the conditions the registry checks at launch (including that the curator launches personally), the rules every vault follows, a work-list leaf encoding bound to the chain, the registry and the curator, the requirement to publish every leaf, a commitment to the collection's name, symbol, story and titles, an optional metadata directory fixed at launch from which the registry's `tokenURI` gives every official circuit ERC-721 metadata (name, image, attributes), and how front-ends, markets and contracts are to use the record. It ends with two recommendations to TapeOut: let each processor's creator decide its circuits' metadata, and let a creator restrict tape-outs to itself.
+
+**For TapeOut:** the two upgrades this TAP recommends to TapeOut (circuit metadata decided by each processor's creator, for every project; and an opt-in restriction of tape-outs to a processor's creator) are collected at the end, under *Recommendations to TapeOut (key points)*. Nothing else depends on them.
 
 ## Motivation
 
@@ -289,7 +289,6 @@ Because the directory is fixed before the first sale, the curator uploads it bef
 **Why serials, and why sequential sales.** Holders call a work "#N", and in most collections they expect #N on the project's site, in markets and on TapeOut to be the same circuit. A work-list index cannot be that number when buyers pick works in any order, because TapeOut numbers circuits in tape-out order. The registry therefore records the order of official tape-outs as the serial, which equals the TapeOut id until someone injects a wrapper, and a sequential sale makes the index, fixed in advance, equal to that order. Runs of copies keep the most common kind of project, one design sold thousands of times, to one leaf per design, and let the tools store the design once. Reserved runs come first because a later reserved run would either stop the sale or, once the sale ended unsold, be unreachable.
 
 **Why prices may be in a token, while tape-out fees stay native.** Communities on TapeOut often want to sell in their own token (for example BEM) rather than in the chain's coin. TapeOut's `tapeout` and `createCPU` charge their fees in the native coin and cannot be changed by this TAP, so a token sale still needs a small native payment; the vault keeps the two apart (`msg.value` is exactly the tape-out fee) so neither can be mistaken for the other. The token is a launch parameter rather than a list in the registry, so no one has to approve tokens and a token that appears on a chain later can be used without deploying anything; the price of this freedom is that a curator can pick a token that misbehaves, which affects only that collection (see Security Considerations). Exact-amount receipt is required because a fee-on-transfer token would otherwise let the vault count tokens it never received.
-
 
 ## Backwards Compatibility
 
