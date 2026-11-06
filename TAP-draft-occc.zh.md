@@ -368,16 +368,16 @@ TapeOut 的处理器合约对每个电路的 `tokenURI` 都返回空值，也没
 
 ## 部署
 
-尚未部署。
+2026-11-07 用“参考实现”一节链接的提交部署。三条链上的地址相同（部署地址和 nonce 相同）；每条链都已用 `tool/check_deploy.py` 核对。
 
 | 链（chainId） | 合约 | 地址 | 必须指向的实现 | 只读核对方式 | 已封存？ |
 |---|---|---|---|---|---|
-| BNB Smart Chain (56) | CuratedRegistry | 待定 | 不是代理合约 | `FACTORY()` 返回 `0x68224F668083c29e9800Be2a646d42d18cedF7e2`，且运行时字节码（屏蔽不可变量后）与所链接提交的参考实现一致 | 是（无所有者、无代理） |
-| BNB Smart Chain (56) | CuratedVault | 上面登记合约的 `VAULT_IMPL()` | 不是代理合约；各 Vault 是它的 EIP-1167 克隆 | 运行时字节码与参考实现一致；不能被初始化 | 是（无所有者） |
-| X Layer (196) | CuratedRegistry | 待定 | 不是代理合约 | `FACTORY()` 返回 `0x1f09DAeFA827f02CBb40967cc91b259763760761`，且运行时字节码（屏蔽不可变量后）与所链接提交的参考实现一致 | 是（无所有者、无代理） |
-| X Layer (196) | CuratedVault | 上面登记合约的 `VAULT_IMPL()` | 不是代理合约；各 Vault 是它的 EIP-1167 克隆 | 运行时字节码与参考实现一致；不能被初始化 | 是（无所有者） |
-| Base (8453) | CuratedRegistry | 待定 | 不是代理合约 | `FACTORY()` 返回 `0x1f09DAeFA827f02CBb40967cc91b259763760761`，且运行时字节码（屏蔽不可变量后）与所链接提交的参考实现一致 | 是（无所有者、无代理） |
-| Base (8453) | CuratedVault | 上面登记合约的 `VAULT_IMPL()` | 不是代理合约；各 Vault 是它的 EIP-1167 克隆 | 运行时字节码与参考实现一致；不能被初始化 | 是（无所有者） |
+| BNB Smart Chain (56) | CuratedRegistry | `0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7` | 不是代理合约 | `FACTORY()` 返回 `0x68224F668083c29e9800Be2a646d42d18cedF7e2`，且运行时字节码（屏蔽不可变量后）与所链接提交的参考实现一致 | 是（无所有者、无代理） |
+| BNB Smart Chain (56) | CuratedVault | 上面登记合约的 `VAULT_IMPL()`：`0x7eE2C66988D77043A31A8AbFcF8167Cad636bAeD` | 不是代理合约；各 Vault 是它的 EIP-1167 克隆 | 运行时字节码与参考实现一致；不能被初始化 | 是（无所有者） |
+| X Layer (196) | CuratedRegistry | `0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7` | 不是代理合约 | `FACTORY()` 返回 `0x1f09DAeFA827f02CBb40967cc91b259763760761`，且运行时字节码（屏蔽不可变量后）与所链接提交的参考实现一致 | 是（无所有者、无代理） |
+| X Layer (196) | CuratedVault | 上面登记合约的 `VAULT_IMPL()`：`0x7eE2C66988D77043A31A8AbFcF8167Cad636bAeD` | 不是代理合约；各 Vault 是它的 EIP-1167 克隆 | 运行时字节码与参考实现一致；不能被初始化 | 是（无所有者） |
+| Base (8453) | CuratedRegistry | `0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7` | 不是代理合约 | `FACTORY()` 返回 `0x1f09DAeFA827f02CBb40967cc91b259763760761`，且运行时字节码（屏蔽不可变量后）与所链接提交的参考实现一致 | 是（无所有者、无代理） |
+| Base (8453) | CuratedVault | 上面登记合约的 `VAULT_IMPL()`：`0x7eE2C66988D77043A31A8AbFcF8167Cad636bAeD` | 不是代理合约；各 Vault 是它的 EIP-1167 克隆 | 运行时字节码与参考实现一致；不能被初始化 | 是（无所有者） |
 
 TapeOut 工厂地址取自 TAP-10 的部署表。各链上登记合约的地址可能不同，前端按链注明登记合约（第 7.1 条）。参考实现的 `python3 tool/check_deploy.py --rpc <RPC> --registry <地址>`（在链接的提交上先 `forge build`）会做完这张表里的检查，并输出两个指纹：登记合约 `0x5ba3de9e9d56421bba8212612416ef0bf7181a03c3bc1edd0fe0565b1dbc01a2`，Vault 实现 `0x44b3b1d049a8cda1899cf42aa2354061def8331bb48989534229f851bbf64dd9`（运行时代码去掉末尾 CBOR 元数据后的 keccak256，登记合约的不可变量先置零）。
 

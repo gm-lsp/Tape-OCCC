@@ -10,6 +10,8 @@ The reference vault in this repository sells each listed work at a fixed price, 
 
 TapeOut runs on BNB Smart Chain, X Layer and Base, and so does this protocol, unchanged: deploy the vault implementation and one `CuratedRegistry` per chain with that chain's TapeOut factory (`FACTORY=<factory> forge script script/Deploy.s.sol --rpc-url <RPC> --broadcast --private-key <key>`, then `python3 tool/check_deploy.py --rpc <RPC> --registry <REGISTRY>`). A collection, its work list and its officialness belong to one chain (leaves include the chain id).
 
+**Deployed (2026-11-07), same addresses on all three chains:** `CuratedRegistry` `0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7`, vault implementation `0x7eE2C66988D77043A31A8AbFcF8167Cad636bAeD`. Check any of them with `python3 tool/check_deploy.py --rpc <RPC> --registry 0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7`.
+
 | Chain | chainId | Native coin | TapeOut factory (registry constructor argument) | Public RPC |
 |---|---|---|---|---|
 | BNB Smart Chain | 56 | BNB | `0x68224F668083c29e9800Be2a646d42d18cedF7e2` | `https://bsc-dataseed.bnbchain.org` |

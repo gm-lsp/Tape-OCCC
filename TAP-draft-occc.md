@@ -384,16 +384,16 @@ Repository: <https://github.com/gm-lsp/Tape-OCCC/tree/6d87cbc6c29acec5d39aae84ec
 
 ## Deployments
 
-Not yet deployed.
+Deployed on 2026-11-07 from the commit linked in Reference Implementation. The addresses are the same on all three chains (same deployer and nonce); each deployment was checked with `tool/check_deploy.py`.
 
 | Chain (chainId) | Contract | Address | Implementation it must point to | How to verify read-only | Sealed? |
 |---|---|---|---|---|---|
-| BNB Smart Chain (56) | CuratedRegistry | TBD | not a proxy | `FACTORY()` returns `0x68224F668083c29e9800Be2a646d42d18cedF7e2`; the runtime bytecode (immutables masked) matches the reference implementation at the linked commit | yes (no owner, no proxy) |
-| BNB Smart Chain (56) | CuratedVault | `VAULT_IMPL()` of the registry above | not a proxy; vaults are EIP-1167 clones of it | the runtime bytecode matches the reference implementation; it cannot be initialised | yes (no owner) |
-| X Layer (196) | CuratedRegistry | TBD | not a proxy | `FACTORY()` returns `0x1f09DAeFA827f02CBb40967cc91b259763760761`; the runtime bytecode (immutables masked) matches the reference implementation at the linked commit | yes (no owner, no proxy) |
-| X Layer (196) | CuratedVault | `VAULT_IMPL()` of the registry above | not a proxy; vaults are EIP-1167 clones of it | the runtime bytecode matches the reference implementation; it cannot be initialised | yes (no owner) |
-| Base (8453) | CuratedRegistry | TBD | not a proxy | `FACTORY()` returns `0x1f09DAeFA827f02CBb40967cc91b259763760761`; the runtime bytecode (immutables masked) matches the reference implementation at the linked commit | yes (no owner, no proxy) |
-| Base (8453) | CuratedVault | `VAULT_IMPL()` of the registry above | not a proxy; vaults are EIP-1167 clones of it | the runtime bytecode matches the reference implementation; it cannot be initialised | yes (no owner) |
+| BNB Smart Chain (56) | CuratedRegistry | `0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7` | not a proxy | `FACTORY()` returns `0x68224F668083c29e9800Be2a646d42d18cedF7e2`; the runtime bytecode (immutables masked) matches the reference implementation at the linked commit | yes (no owner, no proxy) |
+| BNB Smart Chain (56) | CuratedVault | `VAULT_IMPL()` of the registry above: `0x7eE2C66988D77043A31A8AbFcF8167Cad636bAeD` | not a proxy; vaults are EIP-1167 clones of it | the runtime bytecode matches the reference implementation; it cannot be initialised | yes (no owner) |
+| X Layer (196) | CuratedRegistry | `0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7` | not a proxy | `FACTORY()` returns `0x1f09DAeFA827f02CBb40967cc91b259763760761`; the runtime bytecode (immutables masked) matches the reference implementation at the linked commit | yes (no owner, no proxy) |
+| X Layer (196) | CuratedVault | `VAULT_IMPL()` of the registry above: `0x7eE2C66988D77043A31A8AbFcF8167Cad636bAeD` | not a proxy; vaults are EIP-1167 clones of it | the runtime bytecode matches the reference implementation; it cannot be initialised | yes (no owner) |
+| Base (8453) | CuratedRegistry | `0x0a3e2191A21ab3c1bFe9F7E52Bf6a7DBB08788e7` | not a proxy | `FACTORY()` returns `0x1f09DAeFA827f02CBb40967cc91b259763760761`; the runtime bytecode (immutables masked) matches the reference implementation at the linked commit | yes (no owner, no proxy) |
+| Base (8453) | CuratedVault | `VAULT_IMPL()` of the registry above: `0x7eE2C66988D77043A31A8AbFcF8167Cad636bAeD` | not a proxy; vaults are EIP-1167 clones of it | the runtime bytecode matches the reference implementation; it cannot be initialised | yes (no owner) |
 
 The TapeOut factory addresses are those listed in TAP-10's Deployments. A registry's address may differ from chain to chain; front-ends name the registry per chain (§7.1). `python3 tool/check_deploy.py --rpc <RPC> --registry <address>` in the reference implementation runs the checks of this table (after `forge build` at the linked commit) and prints both fingerprints: registry `0x5ba3de9e9d56421bba8212612416ef0bf7181a03c3bc1edd0fe0565b1dbc01a2`, vault implementation `0x44b3b1d049a8cda1899cf42aa2354061def8331bb48989534229f851bbf64dd9` (keccak256 of the runtime code without its CBOR metadata, with the registry's immutables set to zero).
 
